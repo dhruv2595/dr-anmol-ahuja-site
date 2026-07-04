@@ -5,13 +5,20 @@ function unsplash(id: string, params = "auto=format&fit=crop&q=80") {
   return `https://images.unsplash.com/photo-${id}?${params}`;
 }
 
+// next/image with images.unoptimized doesn't prepend basePath to local
+// sources, so public/ paths need the prefix applied manually here.
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+function local(path: string) {
+  return `${basePath}${path}`;
+}
+
 export const images = {
   drAnmolAhuja: {
-    src: "/anmol-ahuja.jpg",
+    src: local("/anmol-ahuja.jpg"),
     alt: "Dr. Anmol Ahuja, laparoscopic and bariatric surgeon",
   },
   heroPatients: {
-    src: "/hero.jpg",
+    src: local("/hero.jpg"),
     alt: "A couple relaxing together at home, smiling",
   },
   heroSurgicalTeam: {
