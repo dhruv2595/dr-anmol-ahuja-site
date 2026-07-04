@@ -65,11 +65,11 @@ export default function RootLayout({
       className={`${fraunces.variable} ${inter.variable} ${notoSansDev.variable} ${notoSerifDev.variable}`}
     >
       <body>
-        {/* Apply saved/system theme before first paint to avoid a flash */}
+        {/* Apply saved theme before first paint to avoid a flash; defaults to light */}
         <script
           dangerouslySetInnerHTML={{
             __html:
-              "(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme: dark)').matches))document.documentElement.classList.add('dark')}catch(e){}})()",
+              "(function(){try{if(localStorage.getItem('theme')==='dark')document.documentElement.classList.add('dark')}catch(e){}})()",
           }}
         />
         <div aria-hidden className="h-1.5 bg-forest" />
